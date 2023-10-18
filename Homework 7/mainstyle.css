@@ -1,0 +1,20 @@
+span, p, a {
+    font-family: 'Courier New', monospace; /* Change the font to Courier New */
+    color: purple; /* Change the text color to purple */
+    text-align: center;
+    background-color: lightblue;
+    border: 2px solid red;
+}
+
+.different-font {
+    font-size: 24px; /* Adjust the size as needed */
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
+}
+
+#specific-font{
+    color:green;
+ font-family: 'Creepster', cursive;
+  font-weight: bold;
+ font-size:50px;
+}
