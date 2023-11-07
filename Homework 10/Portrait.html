@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    <script>
+        let rotationAngle = 0;
+
+        function setup() {
+            createCanvas(600, 600);
+        }
+
+        function draw() {
+            background(173, 216, 230);
+            strokeWeight(1);
+
+            fill(0, 0, 0);
+            ellipse(300, 150, 175, 200);
+
+            fill(255, 218, 185);
+            rect(200, 300, 200, 30);
+
+            fill(255, 218, 185);
+            circle(300, 150, 150);
+            line(250, 130, 270, 110);
+            line(250, 110, 270, 130);
+            line(330, 130, 350, 110);
+            line(330, 110, 350, 130);
+
+            push(); // Save the current transformation state
+            translate(300, 225); // Translate the origin to the triangle's top point
+            rotate(rotationAngle); // Rotate the triangle
+            fill(128, 0, 128);
+            triangle(0, 0, -75, 225, 75, 225); // Draw the rotated triangle
+            pop(); // Restore the previous transformation state
+
+            strokeWeight(50);
+            stroke(255, 0, 0);
+            point(300, 175);
+
+            fill(0);
+            textSize(32);
+            text('The Self', 230, 30);
+            textSize(16);
+            text("Matthew Chaplin", 450, 580);
+
+            textSize(20);
+
+            // Increment the rotation angle to make the triangle spin
+            rotationAngle += 0.02;
+
+                text("X: " + mouseX,100,200 );
+    text("Y: " + mouseY,100,220 );
+
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
