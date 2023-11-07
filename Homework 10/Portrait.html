@@ -6,53 +6,117 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     
     <script>
-        let rotationAngle = 0;
+        var rotationAngle = 0;
+        var startTime;
+        var blinkBool = false;
+        var blinkTimeDuration;
+        var sizeText = 32;
+        var sizeCount = 0;
+        var sizeDirection = 2;
+
+        var eye1;
+        var eye2;
+        var eye3;
+        var eye4;
+
+        var directionStrength = 2;
+        var armDirection = 1;
+        var armX = 200;
+        var hairDirection = 1;
+        var hairY = 200;
+        var fillArm = 255;
 
         function setup() {
             createCanvas(600, 600);
+            blinkTimeDuration = random(1, 5);
+            startTime = millis();
+            directionStrength = random(1,4);
         }
 
         function draw() {
             background(173, 216, 230);
             strokeWeight(1);
 
-            fill(0, 0, 0);
-            ellipse(300, 150, 175, 200);
+            var currentTime = millis();
+            var elapsedTime = (currentTime - startTime)/1000;
 
-            fill(255, 218, 185);
-            rect(200, 300, 200, 30);
+            fill(0, 0, 0);
+            ellipse(300, 150, 175, hairY);
+            hairY+=(directionStrength*hairDirection);
+            if (hairY>=600||hairY<=0){
+       hairDirection*=-1;     
+			}
+
+
+            fill(fillArm, 218, 185);
+            rect(armX, 300, 200, 30);
+            armX+=(directionStrength*armDirection);
+            if(armX>=600||armX<=0){
+       armDirection*= -1;     
+       fillArm-=30;
+			}
 
             fill(255, 218, 185);
             circle(300, 150, 150);
-            line(250, 130, 270, 110);
-            line(250, 110, 270, 130);
-            line(330, 130, 350, 110);
-            line(330, 110, 350, 130);
 
+                 if  (elapsedTime >= blinkTimeDuration){
+                 blinkBool = !blinkBool;
+                 startTime = currentTime;
+			}
+                
+                if (!blinkBool){
+        eye1 =    line(250, 130, 270, 110);
+        eye2 =              line(250, 110, 270, 130);
+        eye3   =             line(330, 130, 350, 110);
+eye4 =             line(330, 110, 350, 130);
+
+
+				}
+
+
+                if  (blinkBool){
+                    eye1 =    line(250, 120, 270, 120);
+        eye2 =              line(250, 120, 270, 120);
+        eye3   =             line(330, 120, 350, 120);
+eye4 =             line(330, 120, 350, 120);
+				}
+
+            //I wanted to rotate the triangle around the top point but it seemed more complicated than I thought it would be, so I copied this code directly:
             push(); // Save the current transformation state
             translate(300, 225); // Translate the origin to the triangle's top point
             rotate(rotationAngle); // Rotate the triangle
             fill(128, 0, 128);
             triangle(0, 0, -75, 225, 75, 225); // Draw the rotated triangle
             pop(); // Restore the previous transformation state
+            //Tried it with trig first but this is way easier
 
             strokeWeight(50);
             stroke(255, 0, 0);
             point(300, 175);
 
             fill(0);
-            textSize(32);
+            textSize(sizeText);
             text('The Self', 230, 30);
+            sizeText+=sizeDirection;
+            sizeCount++;
+            if(sizeCount = 5)
+            {
+            sizeDirection*=-1;
+            sizeCount = 0;
+			}
+
             textSize(16);
             text("Matthew Chaplin", 450, 580);
 
             textSize(20);
 
+ 
+
             // Increment the rotation angle to make the triangle spin
             rotationAngle += 0.02;
 
-                text("X: " + mouseX,100,200 );
-    text("Y: " + mouseY,100,220 );
+             //   text("X: " + mouseX,100,200 );
+   // text("Y: " + mouseY,100,220 );
 
         }
     </script>
