@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    <script>
+  
+      var x = 50;
+    var y = 50;
+    var diameter = 25;
+   
+   var obstacleOneX;
+        var obstacleOneY;
+        var obstacleOneDia;
+        var obstacleOneDir;
+        var obstacleTwoX;
+        var obstacleTwoY;
+        var obstacleTwoLength;
+        var obstacleTwoWidth;
+        var obstacleTwoDir;
+         var triangleX;
+        var triangleY;
+
+
+
+
+    function setup()
+    {
+        createCanvas(800,600);
+          obstacleOneX = random(0,800);
+     obstacleOneY = random(0,600);
+     obstacleOneDia = random(25,100);
+     obstacleOneDir = random(3,10);
+
+     obstacleTwoX = random(0,800);
+     obstacleTwoY= random(0,600);
+     obstacleTwoLength = random(25,100);
+     obstacleTwoWidth = random(25,100);
+
+      triangleX = 0;
+            triangleY = 0;
+
+    }
+    function draw()
+    {
+        background(0);
+        fill(24,200,29);
+        circle(x,y,diameter);
+            triangle(triangleX, triangleY, triangleX + 30, triangleY, triangleX + 15, triangleY - 30);
+            rect(700,500,100,100);
+            fill(255);
+            textSize(12);
+            text("Exit",700,500);
+
+        fill(255,0,0);
+        circle(obstacleOneX+=obstacleOneDir,obstacleOneY+=obstacleOneDir,obstacleOneDia);
+
+        fill(0,255,255);
+        rect(obstacleTwoX-=obstacleOneDir,obstacleTwoY-=obstacleOneDir,obstacleTwoLength,obstacleTwoWidth);
+     
+
+        if (keyIsDown(83)) {
+    y += 10;
+  } else if (keyIsDown(87)) {
+    y -= 10;
+  } else if (keyIsDown(65)) {
+    x -= 10;
+  } else if (keyIsDown(68)) {
+    x += 10;
+  }
+
+  if(x>=700&&y>=500)
+  {
+      fill(255);
+      textSize(24);
+      text("YOU WIN", 400, 300);
+  }
+
+
+        if(x>=800)
+        {
+        x=0;
+		}
+        else if(x<=0)
+        {
+      x=800;  
+		}
+
+        if(y>=600)
+        {
+      y=0;  
+		}
+        else if(y<=0)
+        {
+      y=600;  
+		}  
+        
+
+		
+
+        if(obstacleOneY>=600)
+        {
+      obstacleOneY=0;  
+		}
+        else if(obstacleOneY<=0)
+        {
+      obstacleOneY=600;  
+		}  if(obstacleOneX>=800)
+        {
+        obstacleOneX=0;
+		}
+        else if(obstacleOneX<=0)
+        {
+      obstacleOneX=800;  
+		}
+
+        if(obstacleTwoX>=800)
+        {
+        obstacleTwoX=0;
+		}
+        else if(obstacleTwoX<=0)
+        {
+      obstacleTwoX=800;  
+      }
+        if(obstacleTwoY>=600)
+        {
+      obstacleTwoY=0;  
+		}
+        else if(obstacleTwoY<=0)
+        {
+      obstacleTwoY=600;  
+		}
+
+     
+
+
+
+              //  text("X: " + mouseX,100,200 );
+  // text("Y: " + mouseY,100,220 );
+
+        }
+
+         function mousePressed() {
+          triangleX = mouseX;
+          triangleY = mouseY;
+      }
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
